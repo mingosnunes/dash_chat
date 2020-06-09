@@ -61,6 +61,20 @@ class MessageContainer extends StatelessWidget {
   /// Default to `true`
   final bool textBeforeImage;
 
+  Map<int, Color> darkThemeColors = {
+    0 : Color(0xff121212),
+    1 : Color(0xff161616),
+    2 : Color(0xff202020),
+    3 : Color(0xff242424),
+    4 : Color(0xff282828),
+    5 : Color(0xff323232),
+    6 : Color(0xff363636),
+    7 : Color(0xff404040),
+    8 : Color(0xff444444),
+    9 : Color(0xff484848),
+    10 : Color(0xff525252),
+  };
+
   const MessageContainer({
     @required this.message,
     @required this.timeFormat,
@@ -79,6 +93,9 @@ class MessageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    AdaptiveSize adaptiveSize = new AdaptiveSize(context);
+
     final constraints = this.constraints ??
         BoxConstraints(
             maxHeight: MediaQuery.of(context).size.height,
@@ -98,8 +115,8 @@ class MessageContainer extends StatelessWidget {
                 color: message.user.containerColor != null
                     ? message.user.containerColor
                     : isUser
-                        ? Theme.of(context).accentColor
-                        : Color.fromRGBO(225, 225, 225, 1),
+                        ? Colors.orangeAccent
+                        : darkThemeColors[5],
                 borderRadius: BorderRadius.circular(5.0),
               ),
         margin: EdgeInsets.only(
